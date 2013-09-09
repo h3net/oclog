@@ -15,6 +15,9 @@ INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIR})
 FIND_PATH(THRIFT_INCLUDE_DIR Thrift.h PATH_SUFFIXES thrift)
 INCLUDE_DIRECTORIES(${THRIFT_INCLUDE_DIR})
 
+# CPPUNIT
+FIND_LIBRARY(CPPUNIT_LIB cppunit)
+
 # Scribe interfaces
 include_directories(${CMAKE_SOURCE_DIR}/scribe)
 
@@ -22,5 +25,5 @@ include_directories(${CMAKE_SOURCE_DIR}/scribe)
 include_directories(${CMAKE_SOURCE_DIR}/src)
 
 add_executable(unittest ${unitheaders} testrun.cpp)
-target_link_libraries(unittest cppunit oclog ${Boost_LIBRARIES})
+target_link_libraries(unittest oclog ${Boost_LIBRARIES} ${CPPUNIT_LIB})
 add_test(cpp-unit-test unittest)
